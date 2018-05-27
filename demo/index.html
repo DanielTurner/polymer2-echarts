@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>polymer2-echarts demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script>
+      window.addEventListener('WebComponentsReady', function() {\
+        document.querySelector('#demo').options = {
+          xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+          }]
+        };
+      });
+    </script>
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../polymer2-echarts.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic polymer2-echarts demo</h3>
+      <demo-snippet>
+        <template>
+          <polymer2-echarts width="600px" height="300px" id="demo"></polymer2-echarts>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

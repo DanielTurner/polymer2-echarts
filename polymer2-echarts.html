@@ -1,0 +1,88 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<script src="../echarts/dist/echarts.min.js"></script>
+
+<dom-module id="polymer2-echarts">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #chart {
+        @apply --polymer-2-echarts;
+      }
+    </style>
+    <div id="chart" style$="{{computedStyle(width,height)}}"></div>
+  </template>
+  <script>
+    /**
+     * `polymer2-echarts`
+     * A simple wrapper for the echarts library
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class Polymer2Echarts extends Polymer.Element {
+      static get is() {
+        return 'polymer2-echarts';
+      }
+
+      /**
+       * @return {Object}
+       */
+      static get properties() {
+        return {
+          options: {
+            type: Object,
+          },
+
+          width: {
+            type: String,
+            value: '100px',
+          },
+
+          height: {
+            type: String,
+            value: '200px',
+          },
+        };
+      }
+
+      /**
+       * @return {Array}
+       */
+      static get observers() {
+        return [
+          'optionsChanged(options.*)',
+        ];
+      }
+
+      /**
+       */
+      ready() {
+        super.ready();
+        this.$.chart = echarts.init(this.$.chart);
+      }
+
+      /**
+       * @param {Object} options
+       */
+      optionsChanged(options) {
+        if(!options)return;
+        if(!options.base) return;
+        this.$.chart.setOption(options.base)
+      }
+
+      /**
+       * @param {String} width
+       * @param {String} height
+       * @returns {String}
+       */
+      computedStyle(width, height) {
+        return `width:${width};height:${height}`
+      }
+    }
+
+    window.customElements.define(Polymer2Echarts.is, Polymer2Echarts);
+  </script>
+</dom-module>

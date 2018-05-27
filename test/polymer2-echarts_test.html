@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>polymer2-echarts test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../polymer2-echarts.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <polymer2-echarts></polymer2-echarts>
+      </template>
+    </test-fixture>
+
+
+    <script>
+      suite('polymer2-echarts', () => {
+
+        test('instantiating the element with default properties works', () => {
+          const element = fixture('BasicTestFixture');
+          const elementShadowRoot = element.shadowRoot;
+          const chart = elementShadowRoot.querySelector('#chart');
+          expect(chart).to.exist;
+        });
+      });
+    </script>
+
+  </body>
+</html>
